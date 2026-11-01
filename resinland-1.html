@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رزین لند | فروشگاه محصولات رزینی</title>
+<style>
+:root{--teal:#008080;--dark:#173b3b;--cream:#f6fbfa;--ink:#203333}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--cream);color:var(--ink)}
+header{background:var(--teal);color:#fff;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:1.45rem;font-weight:bold}
+nav a{color:#fff;text-decoration:none;margin:0 8px;font-size:.95rem}
+.hero{padding:55px 5%;background:linear-gradient(135deg,#008080,#164d4d);color:#fff;text-align:center}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);margin:0 0 14px}
+.hero p{line-height:1.9;margin:0 auto 22px;max-width:650px}
+.btn{display:inline-block;background:#fff;color:#006b6b;padding:12px 22px;border-radius:9px;text-decoration:none;font-weight:bold;border:0;cursor:pointer}
+section{padding:34px 5%}
+.section-title{text-align:center;margin:0 0 24px;font-size:1.6rem}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 16px #12333312;border:1px solid #e2eeee}
+.product-image{height:170px;background:#e4f2f0;display:flex;align-items:center;justify-content:center;color:#477575;font-size:3rem}
+.card-content{padding:16px}
+.card h3{margin:0 0 10px}
+.card p{font-size:.9rem;line-height:1.8;color:#5b6d6d}
+.price{font-weight:bold;color:var(--teal);margin:12px 0}
+.order{background:#e2f2ef;text-align:center;border-radius:14px;padding:25px}
+.order p{line-height:1.9}
+footer{text-align:center;background:var(--dark);color:#e8ffff;padding:22px;font-size:.9rem}
+.small{font-size:.8rem;color:#6d8282}
+@media(max-width:480px){header{justify-content:center;text-align:center}nav{width:100%}.hero{padding:40px 5%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">💎 رزین لند</div>
+  <nav>
+    <a href="#products">محصولات</a>
+    <a href="#about">درباره ما</a>
+    <a href="#order">ثبت سفارش</a>
+  </nav>
+</header>
+<div class="hero">
+  <h1>دنیای زیبای هنر رزین</h1>
+  <p>محصولات دست‌ساز رزینی با عشق و ظرافت ساخته می‌شوند. از گالری رزین لند دیدن کنید و محصول دلخواهتان را انتخاب کنید.</p>
+  <a class="btn" href="#products">دیدن محصولات</a>
+</div>
+<section id="products">
+  <h2 class="section-title">محصولات رزین لند</h2>
+  <div class="products">
+    <article class="card">
+      <div class="product-image">💎</div>
+      <div class="card-content">
+        <h3>آویز رزینی</h3>
+        <p>آویز دست‌ساز با طرحی خاص و زیبا.</p>
+        <div class="price">قیمت: به‌زودی</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="product-image">🌸</div>
+      <div class="card-content">
+        <h3>جاکلیدی رزینی</h3>
+        <p>جاکلیدی سبک و زیبا، مناسب هدیه.</p>
+        <div class="price">قیمت: به‌زودی</div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="product-image">✨</div>
+      <div class="card-content">
+        <h3>اکسسوری دست‌ساز</h3>
+        <p>جزئیات ظریف و رنگ‌های جذاب.</p>
+        <div class="price">قیمت: به‌زودی</div>
+      </div>
+    </article>
+  </div>
+  <p class="small" style="text-align:center;margin-top:18px">این محصولات نمونه هستند؛ بعداً عکس‌ها و قیمت‌های واقعی را جایگزین می‌کنیم.</p>
+</section>
+<section id="about">
+  <h2 class="section-title">درباره رزین لند</h2>
+  <p style="max-width:700px;margin:auto;text-align:center;line-height:2">رزین لند، گالری محصولات هنری و دست‌ساز رزینی است. هر محصول با دقت و سلیقه آماده می‌شود تا هدیه‌ای متفاوت یا یادگاری خاص برای شما باشد.</p>
+</section>
+<section id="order">
+  <div class="order">
+    <h2>ثبت سفارش</h2>
+    <p>برای سفارش یا اطلاع از قیمت محصولات، از راه ارتباطی فروشگاه با ما در تماس باشید.</p>
+    <a class="btn" href="https://wa.me/" target="_blank" rel="noopener">ارتباط برای سفارش</a>
+    <p class="small">لینک سفارش فعلاً نمونه است و باید با راه ارتباطی خودتان جایگزین شود.</p>
+  </div>
+</section>
+<footer>© رزین لند | فروشگاه محصولات رزینی</footer>
+</body>
+</html>
