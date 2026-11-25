@@ -28,6 +28,14 @@ section{padding:34px 5%}
 .order p{line-height:1.9}
 footer{text-align:center;background:var(--dark);color:#e8ffff;padding:22px;font-size:.9rem}
 .small{font-size:.8rem;color:#6d8282}
+.order-form{max-width:560px;margin:22px auto 0;text-align:right;display:grid;gap:12px}
+.order-form label{font-weight:bold;font-size:.92rem}
+.order-form input,.order-form select,.order-form textarea{width:100%;padding:12px;border:1px solid #c9dfdc;border-radius:9px;background:#fff;font:inherit;color:var(--ink)}
+.order-form textarea{min-height:86px;resize:vertical}
+.order-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.order-actions .btn{background:var(--teal);color:#fff}
+.order-status{min-height:24px;text-align:center;color:var(--dark);font-size:.9rem}
+@media(max-width:480px){.order-actions .btn{width:100%}}
 @media(max-width:480px){header{justify-content:center;text-align:center}nav{width:100%}.hero{padding:40px 5%}}
 </style>
 </head>
@@ -82,11 +90,78 @@ footer{text-align:center;background:var(--dark);color:#e8ffff;padding:22px;font-
 <section id="order">
   <div class="order">
     <h2>ثبت سفارش</h2>
-    <p>برای سفارش یا اطلاع از قیمت محصولات، از راه ارتباطی فروشگاه با ما در تماس باشید.</p>
-    <a class="btn" href="https://wa.me/" target="_blank" rel="noopener">ارتباط برای سفارش</a>
-    <p class="small">لینک سفارش فعلاً نمونه است و باید با راه ارتباطی خودتان جایگزین شود.</p>
+    <p>اطلاعات سفارش را وارد کنید و روش ارسال پیام را انتخاب کنید.</p>
+    <form class="order-form" id="orderForm">
+      <div>
+        <label for="customerName">نام شما</label>
+        <input id="customerName" name="customerName" autocomplete="name" required maxlength="60" placeholder="نام و نام خانوادگی">
+      </div>
+      <div>
+        <label for="customerPhone">شماره تماس شما</label>
+        <input id="customerPhone" name="customerPhone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="15" placeholder="مثلاً 09123456789">
+      </div>
+      <div>
+        <label for="productChoice">محصول موردنظر</label>
+        <select id="productChoice" name="productChoice" required>
+          <option value="">انتخاب محصول</option>
+          <option>آویز رزینی</option>
+          <option>جاکلیدی دریا</option>
+          <option>اکسسوری دست‌ساز</option>
+          <option>سفارش اختصاصی</option>
+        </select>
+      </div>
+      <div>
+        <label for="quantity">تعداد</label>
+        <input id="quantity" name="quantity" type="number" min="1" max="50" value="1" required>
+      </div>
+      <div>
+        <label for="orderNote">توضیحات (اختیاری)</label>
+        <textarea id="orderNote" name="orderNote" maxlength="500" placeholder="رنگ، طرح یا توضیحات دلخواه"></textarea>
+      </div>
+      <div class="order-actions">
+        <button class="btn" type="button" id="whatsappOrder">ارسال با واتساپ</button>
+        <button class="btn" type="button" id="baleOrder">ارسال با بله</button>
+      </div>
+      <p class="order-status" id="orderStatus" role="status" aria-live="polite"></p>
+    </form>
+    <p class="small">با انتخاب واتساپ، متن سفارش در گفت‌وگو آماده می‌شود. در بله، متن سفارش کپی می‌شود تا آن را در گفت‌وگوی فروشگاه ارسال کنید.</p>
   </div>
 </section>
 <footer>© رزین لند | فروشگاه محصولات رزینی</footer>
+<script>
+(function(){
+  const form=document.getElementById('orderForm');
+  const status=document.getElementById('orderStatus');
+  const shopWhatsApp='REPLACE_WITH_APPROVED_BUSINESS_NUMBER';
+  const baleUrl='https://ble.ir/resinlandir';
+  function getOrderText(){
+    if(!form.reportValidity()) return null;
+    const name=document.getElementById('customerName').value.trim();
+    const phone=document.getElementById('customerPhone').value.trim();
+    const product=document.getElementById('productChoice').value;
+    const quantity=document.getElementById('quantity').value;
+    const note=document.getElementById('orderNote').value.trim();
+    return 'سلام، برای ثبت سفارش از رزین لند پیام می‌دهم.\nنام: '+name+'\nشماره تماس: '+phone+'\nمحصول: '+product+'\nتعداد: '+quantity+(note?'\nتوضیحات: '+note:'');
+  }
+  document.getElementById('whatsappOrder').addEventListener('click',function(){
+    const message=getOrderText();
+    if(!message) return;
+    window.open('https://wa.me/'+shopWhatsApp+'?text='+encodeURIComponent(message),'_blank','noopener');
+    status.textContent='گفت‌وگوی واتساپ باز می‌شود؛ پیام را بررسی و ارسال کنید.';
+  });
+  document.getElementById('baleOrder').addEventListener('click',async function(){
+    const message=getOrderText();
+    if(!message) return;
+    try{
+      await navigator.clipboard.writeText(message);
+      status.textContent='متن سفارش کپی شد. در صفحه بله آن را در گفت‌وگوی فروشگاه جای‌گذاری و ارسال کنید.';
+    }catch(e){
+      status.textContent='صفحه بله باز می‌شود. اگر کپی خودکار انجام نشد، سفارش را دستی وارد کنید.';
+    }
+    window.open(baleUrl,'_blank','noopener');
+  });
+})();
+</script>
 </body>
 </html>
+
